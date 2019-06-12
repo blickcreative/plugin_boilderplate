@@ -12,8 +12,16 @@ function blickplugin_validate_options($input) {
 
 // callback: text field
 function blickplugin_callback_field_text( $args ) {
-	// todo: add callback functionality..
-	echo 'This will be a text field.';
+	// get plugin options, first parameter looks for register_settings second parameter, second paremter looks for fallbacks from myplugin_options_default method
+	$options = get_option( 'blickplugin_options', blickplugin_options_default() );
+	
+	$id    = isset( $args['id'] )    ? $args['id']    : '';
+	$label = isset( $args['label'] ) ? $args['label'] : '';
+	
+	$value = isset( $options[$id] ) ? sanitize_text_field( $options[$id] ) : '';
+	
+	echo '<input id="blickplugin_options_'. $id .'" name="blickplugin_options['. $id .']" type="text" size="40" value="'. $value .'"><br />';
+	echo '<label for="blickplugin_options_'. $id .'">'. $label .'</label>';
 }
 
 // callback: radio field
