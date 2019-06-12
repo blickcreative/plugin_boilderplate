@@ -12,7 +12,7 @@ function blickplugin_validate_options($input) {
 
 // callback: text field
 function blickplugin_callback_field_text( $args ) {
-	// get plugin options, first parameter looks for register_settings second parameter, second paremter looks for fallbacks from myplugin_options_default method
+	// get plugin options, first parameter looks for register_settings second parameter, second paremter looks for fallbacks from blickplugin_options_default method
 	$options = get_option( 'blickplugin_options', blickplugin_options_default() );
 	$id    = isset( $args['id'] )    ? $args['id']    : '';
 	$label = isset( $args['label'] ) ? $args['label'] : '';
@@ -35,7 +35,7 @@ function blickplugin_callback_field_radio( $args ) {
 	
 	foreach ( $radio_options as $value => $label ) {
 		$checked = checked( $selected_option === $value, true, false );
-		echo '<label><input name="myplugin_options['. $id .']" type="radio" value="'. $value .'"'. $checked .'> ';
+		echo '<label><input name="blickplugin_options['. $id .']" type="radio" value="'. $value .'"'. $checked .'> ';
 		echo '<span>'. $label .'</span></label><br />';
 	}
 }
@@ -48,8 +48,8 @@ function blickplugin_callback_field_textarea( $args ) {
 	$allowed_tags = wp_kses_allowed_html( 'post' );
 	//wp_kses( stripslashes_deep) sanitizes variable
 	$value = isset( $options[$id] ) ? wp_kses( stripslashes_deep( $options[$id] ), $allowed_tags ) : '';
-	echo '<textarea id="myplugin_options_'. $id .'" name="myplugin_options['. $id .']" rows="5" cols="50">'. $value .'</textarea><br />';
-	echo '<label for="myplugin_options_'. $id .'">'. $label .'</label>';
+	echo '<textarea id="blickplugin_options_'. $id .'" name="blickplugin_options['. $id .']" rows="5" cols="50">'. $value .'</textarea><br />';
+	echo '<label for="blickplugin_options_'. $id .'">'. $label .'</label>';
 }
 
 // callback: checkbox field
@@ -58,8 +58,8 @@ function blickplugin_callback_field_checkbox( $args ) {
 	$id    = isset( $args['id'] )    ? $args['id']    : '';
 	$label = isset( $args['label'] ) ? $args['label'] : '';
 	$checked = isset( $options[$id] ) ? checked( $options[$id], 1, false ) : '';
-	echo '<input id="myplugin_options_'. $id .'" name="myplugin_options['. $id .']" type="checkbox" value="1"'. $checked .'> ';
-	echo '<label for="myplugin_options_'. $id .'">'. $label .'</label>';
+	echo '<input id="blickplugin_options_'. $id .'" name="blickplugin_options['. $id .']" type="checkbox" value="1"'. $checked .'> ';
+	echo '<label for="blickplugin_options_'. $id .'">'. $label .'</label>';
 }
 
 // callback: select field
@@ -80,10 +80,10 @@ function blickplugin_callback_field_select( $args ) {
 		'sunrise'   => 'Sunrise',
 	);
 	
-	echo '<select id="myplugin_options_'. $id .'" name="myplugin_options['. $id .']">';
+	echo '<select id="blickplugin_options_'. $id .'" name="blickplugin_options['. $id .']">';
 	foreach ( $select_options as $value => $option ) {
 		$selected = selected( $selected_option === $value, true, false );
 		echo '<option value="'. $value .'"'. $selected .'>'. $option .'</option>';
 	}
-	echo '</select> <label for="myplugin_options_'. $id .'">'. $label .'</label>';
+	echo '</select> <label for="blickplugin_options_'. $id .'">'. $label .'</label>';
 }
