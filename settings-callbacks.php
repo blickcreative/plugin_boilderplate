@@ -4,12 +4,6 @@ if(! defined('ABSPATH')){
     exit;
 }
 
-// validate plugin settings
-function blickplugin_validate_options($input) {
-	// todo: add validation functionality..
-	return $input;
-}
-
 // callback: text field
 function blickplugin_callback_field_text( $args ) {
 	// get plugin options, first parameter looks for register_settings second parameter, second paremter looks for fallbacks from blickplugin_options_default method
