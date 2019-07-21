@@ -35,6 +35,9 @@ if(is_admin()){
     require_once plugin_dir_path(__FILE__) . 'settings-callbacks.php';
     require_once plugin_dir_path(__FILE__) . 'settings-register.php';
 }
+
+require_once plugin_dir_path(__FILE__) . 'includes/core-functions.php';
+
 // default plugin option settings
 function blickplugin_options_default() {
 	return array(
