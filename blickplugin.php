@@ -61,8 +61,10 @@ add_action( 'plugins_loaded', 'blickplugin_load_textdomain' );
 
 
 // remove options on uninstall
+/* 
+An uninstall file will run when users delete the plugin from admin
 function blickplugin_on_uninstall() {
 	if ( ! current_user_can( 'activate_plugins' ) ) return;
 	delete_option( 'blickplugin_options' );
 }
-register_uninstall_hook( __FILE__, 'blickplugin_on_uninstall' );
+register_uninstall_hook( __FILE__, 'blickplugin_on_uninstall' ); */
