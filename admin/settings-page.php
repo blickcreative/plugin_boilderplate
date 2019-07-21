@@ -11,7 +11,7 @@ function blickplugin_display_settings_page() {
 	?>
 	
 	<div class="wrap">
-		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+		<h1><?php echo esc_html__( get_admin_page_title(), 'blickplugin'); ?></h1>
 		<form action="options.php" method="post">
 			<?php
 			// output security fields

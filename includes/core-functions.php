@@ -15,7 +15,7 @@ function blick_custom_login_title($title){
     $options = get_option('blickplugin_options', blickplugin_options_default());
 
     if(isset($options['custom_title']) && ! empty($options['custom_title'])):
-        $title = esc_attr($options['custom_title']);
+        $title = esc_html__(esc_attr($options['custom_title']), 'blickplugin');
     endif;
 
     return $title;
@@ -46,7 +46,7 @@ function blickplugin_custom_login_message( $message ) {
 	
 	$options = get_option( 'blickplugin_options', blickplugin_options_default() );
 	if ( isset( $options['custom_message'] ) && ! empty( $options['custom_message'] ) ) {
-		$message = "<p class='custom-message'>" . wp_kses_post( $options['custom_message'] ) . "</p>";
+		$message = "<p class='custom-message'>" . esc_html__(wp_kses_post( $options['custom_message'] ), 'blickplugin') . "</p>";
 	}
 	return $message;
 }
@@ -62,7 +62,7 @@ function blickplugin_custom_admin_footer( $message ) {
 		$message = sanitize_text_field( $options['custom_footer'] );
 	}
 	
-	return $message;
+	return esc_html__($message, 'blickplugin');
 }
 add_filter( 'admin_footer_text', 'blickplugin_custom_admin_footer' );
 
@@ -79,9 +79,7 @@ function blickplugin_custom_admin_toolbar() {
         global $wp_admin_bar;
         $wp_admin_bar->remove_menu( 'comments' );
 		$wp_admin_bar->remove_menu( 'new-content' );
-		
 	}
-	
 }
 add_action( 'wp_before_admin_bar_render', 'blickplugin_custom_admin_toolbar', 999 );
 
@@ -89,7 +87,6 @@ add_action( 'wp_before_admin_bar_render', 'blickplugin_custom_admin_toolbar', 99
 function blickplugin_custom_admin_scheme( $user_id ) {
 	
 	$scheme = 'default';
-	
 	$options = get_option( 'blickplugin_options', blickplugin_options_default() );
 	
 	if ( isset( $options['custom_scheme'] ) && ! empty( $options['custom_scheme'] ) ) {

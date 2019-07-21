@@ -4,6 +4,8 @@ Description: Welcome to the Blick Plugin.
 Plugin URI:  foo@foo.com
 Author:      Blick Creative
 Version:     1.0
+Text Domain  blickplugin
+Domain Path /languages
 License:     GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.txt
 
