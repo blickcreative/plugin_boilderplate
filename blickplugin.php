@@ -2,9 +2,11 @@
 /*
 Plugin Name: BlickPlugin
 Description: Welcome to the Blick Plugin.
-Plugin URI:  blickcreative.com.au
+Plugin URI:  foo@foo.com
 Author:      Blick Creative
 Version:     1.0
+Text Domain  blickplugin
+Domain Path /languages
 License:     GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -42,18 +44,25 @@ require_once plugin_dir_path(__FILE__) . 'includes/core-functions.php';
 function blickplugin_options_default() {
 	return array(
 		'custom_url'     => 'https://wordpress.org/',
-		'custom_title'   => 'Powered by WordPress',
+		'custom_title'   => esc_html__('Powered by WordPress', 'blickplugin'),
 		'custom_style'   => 'disable',
-		'custom_message' => '<p class="custom-message">My custom message</p>',
-		'custom_footer'  => 'Special message for users',
+		'custom_message' => '<p class="custom-message">' . esc_html__('My custom message', 'blickplugin') . '</p>',
+		'custom_footer'  => esc_html__('Special message for users', 'blickplugin'),
 		'custom_toolbar' => false,
 		'custom_scheme'  => 'default',
 	);
+} 
+
+// load text domain
+function blickplugin_load_textdomain() {
+	load_plugin_textdomain( 'blickplugin', false, plugin_dir_path( __FILE__ ) . 'languages/' );
 }
+add_action( 'plugins_loaded', 'blickplugin_load_textdomain' );
 
 
-
-
-
-
-
+// remove options on uninstall
+function blickplugin_on_uninstall() {
+	if ( ! current_user_can( 'activate_plugins' ) ) return;
+	delete_option( 'blickplugin_options' );
+}
+register_uninstall_hook( __FILE__, 'blickplugin_on_uninstall' );

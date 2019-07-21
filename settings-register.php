@@ -43,12 +43,12 @@ function blickplugin_register_settings() {
     
     // callback: login section
     function blickplugin_callback_section_login() {
-        echo '<p>These settings enable you to customize the WP Login screen.</p>';
+        echo '<p>' . esc_html__("These settings enable you to customize the WP Login screen.", "blickplugin") . '</p>';
     }
 
     // callback: admin section
     function blickplugin_callback_section_admin() {
-        echo '<p>These settings enable you to customize the WP Admin Area.</p>';
+        echo '<p>' . esc_html__("These settings enable you to customize the WP Admin Area.", "blickplugin") . '</p>';
     }
 
     /*
