@@ -14,6 +14,12 @@ function blickplugin_callback_validate_options($input) {
 	if ( isset( $input['custom_title'] ) ) {
 		$input['custom_title'] = sanitize_text_field( $input['custom_title'] );
 	}
+
+		// custom logo
+		if ( isset( $input['custom_logo'] ) ) {
+			$input['custom_logo'] = sanitize_text_field( $input['custom_logo'] );
+		}
+		
 	
 	// custom style
 	$radio_options = array(

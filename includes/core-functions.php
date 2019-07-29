@@ -23,6 +23,27 @@ function blick_custom_login_title($title){
 //change the title for the login logo
 add_filter('login_headertitle', 'blick_custom_login_title'); 
 
+
+
+function blick_custom_login_logo(){
+     $options = get_option('blickplugin_options', blickplugin_options_default());
+/* echo "<pre>";
+print_r($options);
+echo "</pre>"; */
+    if(isset($options['custom_logo']) && ! empty($options['custom_logo'])):
+		$logoUrl = esc_html__(esc_attr($options['custom_logo']), 'blickplugin');?>
+		<style type="text/css">
+        #login h1 a, .login h1 a {
+            background-image: url(<?php echo $logoUrl; ?>);
+		}
+		</style>
+    <?php endif;
+ }
+//change the image for the login logo
+add_action('login_enqueue_scripts', 'blick_custom_login_logo'); 
+
+
+
 // custom login styles
 function blickplugin_custom_login_styles() {
 	
@@ -46,7 +67,7 @@ function blickplugin_custom_login_message( $message ) {
 	
 	$options = get_option( 'blickplugin_options', blickplugin_options_default() );
 	if ( isset( $options['custom_message'] ) && ! empty( $options['custom_message'] ) ) {
-		$message = "<p class='custom-message'>" . esc_html__(wp_kses_post( $options['custom_message'] ), 'blickplugin') . "</p>";
+		$message = "<p class='custom-message' style='text-align: center;'>" . esc_html__(wp_kses_post( $options['custom_message'] ), 'blickplugin') . "</p>";
 	}
 	return $message;
 }

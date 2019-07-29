@@ -79,6 +79,19 @@ function blickplugin_register_settings() {
 		[ 'id' => 'custom_title', 'label' => 'Custom title attribute for the logo link' ]
 	);
 
+
+	
+	add_settings_field(
+		'custom_logo',
+		'Custom Logo',
+		'blickplugin_callback_field_text',
+		'blickplugin',
+		'blickplugin_section_login',
+		[ 'id' => 'custom_logo', 'label' => 'Custom logo image for the logo link.' ]
+	);
+
+
+
 	add_settings_field(
 		'custom_style',
 		'Custom Style',
